@@ -1,6 +1,7 @@
 package warptrading.java.game;
 
 import javax.swing.*;
+import java.awt.event.ActionListener;
 import java.util.EnumMap;
 
 public class GameView extends JFrame implements Runnable
@@ -43,6 +44,99 @@ public class GameView extends JFrame implements Runnable
     public void run()
     {
         setVisible(true);
+    }
+
+    /**
+     * add paper button listener
+     * @param actionListener
+     */
+    public void addPaperController(ActionListener actionListener){
+        paperButton.addActionListener(actionListener);
+    }
+
+    /**
+     * add scissor button listener
+     * @param actionListener
+     */
+    public void addScissorsController(ActionListener actionListener){
+        scissorButton.addActionListener(actionListener);
+    }
+
+    /**
+     * add rock button listener
+     * @param actionListener
+     */
+    public void addRockController(ActionListener actionListener){
+        rockButton.addActionListener(actionListener);
+    }
+
+    /**
+     * add spock button listener
+     * @param actionListener
+     */
+    public void addSpockController(ActionListener actionListener){
+        spockButton.addActionListener(actionListener);
+    }
+
+    /**
+     * add lizard button listener
+     * @param actionListener
+     */
+    public void addLizardController(ActionListener actionListener){
+        lizardButton.addActionListener(actionListener);
+    }
+
+    /**
+     * get userchoice
+     * @return UserChoice in Panel
+     */
+    public JPanel getUserChoicePanel(){ return playerChoicePanel; }
+    /**
+     * get computerchoice
+     * @return ComputerChoice in Panel
+     */
+    public JPanel getComputerChoicePanel(){ return computerChoicePanel; }
+    /**
+     * get result in label
+     * @return result in label
+     */
+    public JLabel getResultLabel(){ return resultLabel; }
+
+    /**
+     * update game result in GUI
+     * @param result
+     */
+    public void setResultLabel(String result)
+    {
+        getResultLabel().setText(result);
+    }
+
+    /**
+     * Update Choice Icon according to players choice
+     * @param panel is either player or computer panel
+     * @param choice is Paper,Scissor or Rock
+     */
+    public void changeShownChoices(JPanel panel, GameModel.CHOICE choice){
+        JLabel iconLabel = new JLabel();
+        iconLabel.setIcon(iconEnumMap.get(choice));
+
+        javax.swing.GroupLayout updateChoicePanelLayout = new javax.swing.GroupLayout(panel);
+        panel.removeAll();
+        panel.setLayout(updateChoicePanelLayout);
+        updateChoicePanelLayout.setHorizontalGroup(
+                updateChoicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, updateChoicePanelLayout.createSequentialGroup()
+                                .addContainerGap(43, Short.MAX_VALUE)
+                                .addComponent(iconLabel)
+                                .addGap(27, 27, 27))
+        );
+        updateChoicePanelLayout.setVerticalGroup(
+                updateChoicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(updateChoicePanelLayout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addComponent(iconLabel)
+                                .addContainerGap(32, Short.MAX_VALUE))
+        );
     }
 
     private void initComponents()
