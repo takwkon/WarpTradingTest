@@ -1,4 +1,13 @@
 package warptrading.java.game;
 
-public class GameController {
+public class GameController
+{
+    GameModel model;
+    GameView view;
+
+    public GameController (GameModel model, GameView view)
+    {
+        this.model = model;
+        this.view = view;
+    }
 }
