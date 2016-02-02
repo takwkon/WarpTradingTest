@@ -2,6 +2,8 @@ package warptrading.java.game;
 
 public class GameModel
 {
+    public static final int NUMBER_OF_CHOICE = CHOICE.LIZARD.getValue() + 1;
+
     /**
      * Player Choice
      */
