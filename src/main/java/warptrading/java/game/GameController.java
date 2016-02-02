@@ -12,6 +12,13 @@ public class GameController
     {
         this.model = model;
         this.view = view;
+
+        // add listener
+        this.view.addPaperController(new PaperButtonController());
+        this.view.addScissorsController(new ScissorsButtonController());
+        this.view.addRockController(new RockButtonController());
+        this.view.addSpockController(new SpockButtonController());
+        this.view.addLizardController(new LizardButtonController());
     }
 
     /**
@@ -19,6 +26,21 @@ public class GameController
      */
     private void changeView()
     {
+        view.changeShownChoices(view.getUserChoicePanel(), model.getUserChoice());
+        view.changeShownChoices(view.getComputerChoicePanel(), model.getComputerChoice());
+
+        if (model.judgeResult() == GameModel.GAMESTATE.WIN)
+        {
+            view.setResultLabel("Player Win !!");
+        }
+        else if (model.judgeResult()==GameModel.GAMESTATE.LOST)
+        {
+            view.setResultLabel("Player Lost !!");
+        }
+        else
+        {
+            view.setResultLabel("Draw Game ");
+        }
 
         view.repaint();
     }
